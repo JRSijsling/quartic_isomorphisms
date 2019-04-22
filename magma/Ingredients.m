@@ -7,6 +7,9 @@
  */
 
 
+declare verbose QuarticIso, 2;
+
+
 function FlexesThroughPoint(f0,p);
 
 //Given a point  p  on the curve  C  defined by the smooth quartic  f0  ,

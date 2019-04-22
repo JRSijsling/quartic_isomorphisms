@@ -11,6 +11,7 @@ import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingField
 import "IsoZ3.m": IsoZ3;
 import "IsoG16.m": IsoG16;
 
+
 function QuarticIsoQQInvTest(f1,f2);
 
 I1,W := DixmierOhnoInvariants(f1);

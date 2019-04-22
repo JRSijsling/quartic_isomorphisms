@@ -5,4 +5,5 @@
   QuarticIsoFF.m
   QuarticIsoQQ.m
   QuarticIso.m
+  Normalize.m
 }
