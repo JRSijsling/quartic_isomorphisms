@@ -6,4 +6,11 @@
   QuarticIsoQQ.m
   QuarticIso.m
   Normalize.m
+  echidna-2.0
+  {
+    src
+    {
+      +echidna.spec
+    }
+  }
 }

@@ -24,3 +24,8 @@ Usage
 --
 
 Examples are given in the directory `examples/`.
+
+Credits
+--
+
+The algorithms use functionality for invariant theory as first developed in David Kohel's [`echidna`](https://www.i2m.univ-amu.fr/perso/david.kohel/alg/index.html) package.
