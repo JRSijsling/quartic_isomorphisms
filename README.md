@@ -1,21 +1,17 @@
 Description
 --
 
-This repository contains Magma code for calculating isomorphisms between plane quartic curves. The code in it is written in excruciatingly terrible style for now, and it only works over the rationals and finite fields. To be improved.
+This repository contains Magma code for calculating isomorphisms between plane quartic curves. The code in it is written in terrible style for now, and it only works over the rationals and finite fields. A number field version exists, but does not have acceptable speed. To be improved.
 
 Prerequisites
 --
 
-An installation of Magma.
+You need to have Magma installed on your machine to use this code.
 
-Magma installation 
+Installation
 --
 
-The subdirectory `quartic_isomorphisms/magma/` includes code that can be run purely within Magma. You can load all the Magma specific files by attaching the ``quartic_isomorphisms/magma/spec`` file with ``AttachSpec``. For example, if you start your session of Magma inside the git directory, you can do this by typing
-```
-AttachSpec("magma/spec");
-```
-To make this independent of the directory in which you find yourself, you may prefer to indicate the relative path, like
+You can enable the functionality of this package in Magma by attaching the `quartic_isomorphisms/magma/spec` file with `AttachSpec`. To make this independent of the directory in which you find yourself, and to active this on startup by default, you may want to indicate the relative path in your `~/.magmarc` file, by adding the line
 ```
 AttachSpec("~/Programs/quartic_isomorphisms/magma/spec");
 ```
@@ -25,7 +21,13 @@ Usage
 
 Examples are given in the directory `examples/`.
 
+Verbose comments are enabled by
+```
+SetVerbose("QuarticIso", n);
+```
+where `n` is either `1` or `2`. A higher value gives more comments.
+
 Credits
 --
 
-The algorithms use functionality for invariant theory as first developed in David Kohel's [`echidna`](https://www.i2m.univ-amu.fr/perso/david.kohel/alg/index.html) package.
+This package uses code from the Magma package [`echidna`](http://iml.univ-mrs.fr/~kohel/alg/index.html) by David Kohel for an implementation of the Dixmier--Ohno invariants.
