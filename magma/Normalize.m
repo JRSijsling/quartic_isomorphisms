@@ -7,7 +7,7 @@
  */
 
 
-intrinsic NormalizeGenericQuartic(f::RngMPolElt : minimize := true) -> .
+intrinsic MinimizeC2Quartic(f::RngMPolElt : minimize := true) -> .
 {Normalizes a ternary quartic form with few automorphisms.}
 
 R := Parent(f);
@@ -85,11 +85,11 @@ return R ! f, CyclicGroup(2);
 end intrinsic;
 
 
-intrinsic NormalizeGenericQuartic(X::CrvPln : minimize := true) -> .
+intrinsic MinimizeC2Quartic(X::CrvPln : minimize := true) -> .
 {Normalizes a plane quartic curve with few automorphisms.}
 
 f := DefiningPolynomial(X);
 assert Degree(f) eq 4;
-return PlaneCurve(NormalizeGenericQuartic(f : minimize := minimize));
+return PlaneCurve(MinimizeC2Quartic(f : minimize := minimize));
 
 end intrinsic;
