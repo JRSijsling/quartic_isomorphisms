@@ -6,7 +6,7 @@ This repository contains Magma code for calculating isomorphisms between plane q
 Prerequisites
 --
 
-You need to have Magma installed on your machine to use this code.
+An installation of Magma and the dependency [`JRSijsling/quartic_reconstruction`](https://github.com/JRSijsling/quartic_reconstruction).
 
 Installation
 --

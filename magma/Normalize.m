@@ -17,8 +17,9 @@ if not Type(F) eq FldRat then
     minimize := false;
 end if;
 
-f0 := f;
+f0 := f; counter := 0;
 while true do
+    counter +:= 1;
     f := f0;
     test, Ts := QuarticIsomorphisms(f, f);
     Ts := [ T : T in Ts | IsScalar(T^2) and not IsScalar(T) ];
@@ -74,7 +75,7 @@ while true do
     vprint QuarticIso : "Reduced normalized curve:";
     vprint QuarticIso : f;
 
-    if f eq f0 then
+    if f eq f0 or counter eq 12 then
         break;
     end if;
     f0 := f;

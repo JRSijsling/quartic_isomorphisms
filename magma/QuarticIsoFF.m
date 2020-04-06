@@ -102,6 +102,8 @@ P2 := ProjectiveSpace(Parent(f1));
 F := BaseField(P2);
 S<t> := PolynomialRing(F);
 R<x1,x2,x3> := CoordinateRing(P2);
+f1 := R ! f1;
+f2 := R ! f2;
 Transfs := [];
 
 if not QuarticIsoFFInvTest(f1,f2) then
