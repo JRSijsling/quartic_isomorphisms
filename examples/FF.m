@@ -37,7 +37,7 @@ while not stop do
         end while;
         f2 := a2*g2(f);
 
-        time test,Ts,IINeeded := QuarticIsomorphisms(f1,f2);
+        time test,Ts,IINeeded := QuarticIsomorphisms(f1,f2 : geometric := true);
         //test,Ts,IINeeded := QuarticIsoQQ(f1,f2,P2);
         //Ts;
 
@@ -56,7 +56,7 @@ while not stop do
             R2FF<x,y,z> := CoordinateRing(P2FF);
             f1FF := R2FF ! f1;
             f2FF := R2FF ! f2;
-            if not IsMultiplePolynomial(TransformForm(f1FF,T),f2FF) then
+            if not IsMultiplePolynomial(TransformForm(f1FF,T), f2FF) then
                 error "SOMETHING WENT WRONG, PLEASE TELL ME!";
             end if;
         end for;

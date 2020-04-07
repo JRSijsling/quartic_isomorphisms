@@ -6,7 +6,7 @@ This repository contains Magma code for calculating isomorphisms between plane q
 Prerequisites
 --
 
-An installation of Magma and the dependency [`JRSijsling/quartic_reconstruction`](https://github.com/JRSijsling/quartic_reconstruction).
+An installation of Magma and the dependency [`JRSijsling/quartic_reconstruction`](https://github.com/JRSijsling/quartic_reconstruction).The repository [`edgarcosta/endomorphisms`](https://github.com/edgarcosta/endomorphisms) is needed for running the tests in `examples/`.
 
 Installation
 --
