@@ -14,8 +14,8 @@ import "IsoG16.m": IsoG16;
 
 function QuarticIsoQQInvTest(f1,f2);
 
-I1,W := DixmierOhnoInvariants(f1);
-I2,W := DixmierOhnoInvariants(f2);
+I1,W := DixmierOhnoInvariantsEchidna(f1);
+I2,W := DixmierOhnoInvariantsEchidna(f2);
 
 if WPSNormalize(W,I1) eq WPSNormalize(W,I2) then
     return true;
@@ -109,7 +109,7 @@ if not QuarticIsoQQInvTest(f1,f2) then
     return false,[],false;
 else
 
-I1 := DixmierOhnoInvariants(f1);
+I1 := DixmierOhnoInvariantsEchidna(f1);
 if IsInStratumC3(I1) then
     test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
     return test,Ts,false;

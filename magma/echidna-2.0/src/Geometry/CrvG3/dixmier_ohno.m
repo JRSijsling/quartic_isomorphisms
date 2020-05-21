@@ -285,7 +285,7 @@ intrinsic QuarticCovariantsAndContravariants(Phi::RngMPolElt) -> SeqEnum
 end intrinsic;
 
 
-intrinsic DixmierOhnoInvariants(C::Crv) -> SeqEnum
+intrinsic DixmierOhnoInvariantsEchidna(C::Crv) -> SeqEnum
     {}
     PP := AmbientSpace(C);
     require IsProjective(PP) and Dimension(PP) eq 2 and Degree(C) eq 4 :
@@ -293,11 +293,11 @@ intrinsic DixmierOhnoInvariants(C::Crv) -> SeqEnum
     K := BaseRing(C);
     require Characteristic(K) notin {2,3} :
 	"Argument must not be defined over a ring of characteristic 2 or 3.";
-    return DixmierOhnoInvariants(DefiningPolynomial(C));
+    return DixmierOhnoInvariantsEchidna(DefiningPolynomial(C));
 end intrinsic;
 
 
-intrinsic DixmierOhnoInvariants(Phi::RngMPolElt : IntegralNormalization := true) -> SeqEnum
+intrinsic DixmierOhnoInvariantsEchidna(Phi::RngMPolElt : IntegralNormalization := true) -> SeqEnum
     {Dixmier-Ohno quartic invariants (I3 : I6 : I9 : J9 : I12 : J12 :
     I15 : J15 : I18 : J18 : I21 : J21 : I27); the subset of indices
     [ 1, 2, 3, 5, 7, 9, 13] are the Dixmier invariants.}
