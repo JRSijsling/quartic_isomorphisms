@@ -132,6 +132,7 @@ if IsInStratumG16(I1) then
     end try;
 end if;
 
+try
 //Finding a suitable quadratic contravariant
 stop := false;
 teller := 0;
@@ -870,6 +871,10 @@ end if;
 end if;
 
 end while;
+catch e
+    test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+    return test, &cat(Mss), true;
+end try;
 
 test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
 return test, &cat(Mss), true;
