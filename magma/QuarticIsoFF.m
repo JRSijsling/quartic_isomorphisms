@@ -114,13 +114,23 @@ else
 I1 := DixmierOhnoInvariants(f1);
 if IsInStratumC3(I1) then
     vprint QuarticIso : "In stratum C3";
-    test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
-    return test,Ts,false;
+    try
+        test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
+        return test,Ts,false;
+    catch e
+        test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+        return test, &cat(Mss), false;
+    end try;
 end if;
 if IsInStratumG16(I1) then
     vprint QuarticIso : "In stratum G16";
-    test,Ts := IsoG16(f1,f2 : geometric := geometric);
-    return test,Ts,false;
+    try
+        test,Ts,StF := IsoG16(f1,f2 : geometric := geometric);
+        return test,Ts,false;
+    catch e
+        test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+        return test, &cat(Mss), false;
+    end try;
 end if;
 
 //Finding a suitable quadratic contravariant
@@ -696,7 +706,7 @@ while not stop do
 
 end while;
 
-test, Mss := SPQIsIsomorphic(f1, f2);
+test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
 return test, &cat(Mss), true;
 
 //What follows is a last resort, and we want to remove this.
