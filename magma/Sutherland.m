@@ -33,7 +33,7 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
     */
 
     // We begin with the most overdetermined case, with first row (0 0 1).
-    Mss := [ ];
+    Ms := [ ];
     A<[a]> := AffineSpace(F, 7);
     mat := Matrix(CoordinateRing(A), 3,3, [0,0,1] cat a[1..6]);
     PA := PolynomialRing(CoordinateRing(A), 3);
@@ -46,7 +46,13 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
                        [MonomialCoefficient(f2PA, m) : m in mons]]);
     S := Scheme(A, Minors(tworows, 2) cat [Determinant(mat)*a[7]-1]);
     pts := DemPoints(S : geometric := geometric);
-    Append(~Mss, [* Matrix(3,3, [0,0,1] cat Eltseq(pt)[1..6]) : pt in pts *]);
+    Ms cat:= [ Matrix(3,3, [0,0,1] cat Eltseq(pt)[1..6]) : pt in pts ];
+    if geometric and (#pts gt 0) then
+        F := BaseRing(Ms[#Ms]);
+        S := PolynomialRing(F, 3);
+        h := hom< R -> S | [S.1,S.2,S.3] >;
+        f1 := h(f1); f2 := h(f2); R := S;
+    end if;
 
     // Now we look at first row (0 1 *).
     A<[a]> := AffineSpace(F, 8);
@@ -61,7 +67,13 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
                        [MonomialCoefficient(f2PA, m) : m in mons]]);
     S := Scheme(A, Minors(tworows, 2) cat [Determinant(mat)*a[8]-1]);
     pts := DemPoints(S : geometric := geometric);
-    Append(~Mss, [* Matrix(3,3, [0,1] cat Eltseq(pt)[1..7]) : pt in pts *]);
+    Ms cat:= [ Matrix(3,3, [0,1] cat Eltseq(pt)[1..7]) : pt in pts ];
+    if geometric and (#pts gt 0) then
+        F := BaseRing(Ms[#Ms]);
+        S := PolynomialRing(F, 3);
+        h := hom< R -> S | [S.1,S.2,S.3] >;
+        f1 := h(f1); f2 := h(f2); R := S;
+    end if;
 
     // Finally, the generic case, first row is (1 * *)
     A<[a]> := AffineSpace(F, 9);
@@ -76,16 +88,20 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
                        [MonomialCoefficient(f2PA, m) : m in mons]]);
     S := Scheme(A, Minors(tworows, 2) cat [Determinant(mat)*a[9]-1]);
     pts := DemPoints(S : geometric := geometric);
-    Append(~Mss, [* Matrix(3,3, [1] cat Eltseq(pt)[1..8]) : pt in pts *]);
+    Ms cat:= [ Matrix(3,3, [1] cat Eltseq(pt)[1..8]) : pt in pts ];
+    if geometric and (#pts gt 0) then
+        F := BaseRing(Ms[#Ms]);
+        S := PolynomialRing(F, 3);
+        h := hom< R -> S | [S.1,S.2,S.3] >;
+        f1 := h(f1); f2 := h(f2); R := S;
+    end if;
 
-    // All together now
-    for Ms in Mss do
-        for M in Ms do
-            Rcl := PolynomialRing(BaseRing(M), 3);
-            h := hom< Parent(f1) -> Rcl | [ Rcl.1, Rcl.2, Rcl.3 ] >;
-            g1 := h(f1); g2 := h(f2); g1M := g1^M;
-            assert LeadingCoefficient(g2)*g1M eq LeadingCoefficient(g1M)*g2;
-        end for;
+    Rcl := PolynomialRing(F, 3);
+    h := hom< Parent(f1) -> Rcl | [ Rcl.1, Rcl.2, Rcl.3 ] >;
+    g1 := h(f1); g2 := h(f2);
+    for M in Ms do
+        g1M := g1^M;
+        assert LeadingCoefficient(g2)*g1M eq LeadingCoefficient(g1M)*g2;
     end for;
-    return &or[ #Ms ne 0 : Ms in Mss ], Mss;
+    return #Ms ne 0, Ms;
 end function;

@@ -228,8 +228,8 @@ if IsInStratumC3(I1) then
         test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
         return test,Ts,true;
     catch e
-        test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-        return test, &cat(Mss), true;
+        test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+        return test, Ms, true;
     end try;
 end if;
 if IsInStratumG16(I1) then
@@ -238,8 +238,8 @@ if IsInStratumG16(I1) then
         test,Ts := IsoG16(f1,f2 : geometric := geometric);
         return test,Ts,true;
     catch e
-        test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-        return test, &cat(Mss), true;
+        test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+        return test, Ms, true;
     end try;
 end if;
 
@@ -821,12 +821,12 @@ while not stop do
 
 end while;
 catch e
-    test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-    return test, &cat(Mss), true;
+    test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+    return test, Ms, true;
 end try;
 
-test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-return test, &cat(Mss), true;
+test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
+return test, Ms, true;
 
 end if;
 
