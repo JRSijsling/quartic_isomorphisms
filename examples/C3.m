@@ -1,9 +1,10 @@
 /* Examples with group C3 */
+SetVerbose("QuarticIso", 1);
 
 N := 10^100;
 F := FiniteField(NextPrime(N));
 //F := FiniteField(5);
-//F := Rationals();
+F := Rationals(); N := 10;
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 f1 := x^3*z + y^4 + y^2*z^2 + 2*y*z^3 - 3*z^4;
@@ -35,7 +36,7 @@ for i:=1 to 2^5 do
     end while;
     f2 := a2*g2(f2);
 
-    time test,Ts,StF := QuarticIsomorphisms(f1,f2);
+    time test,Ts,StF := QuarticIsomorphisms(f1,f2 : geometric := true);
     //test;
     //"Memory used:";
     //Memory();

@@ -7,12 +7,12 @@
  */
 
 
-import "Ingredients.m": TransformBinaryForm;
+import "Ingredients.m": TransformBinaryForm, AssertTs;
 
 
 function IsoG16(f01,f02 : geometric := false);
 
-Ts := [];
+Ts := [* *];
 
 F := BaseRing(Parent(f01));
 P2<x,y,z> := ProjectiveSpace(F,2);
@@ -153,6 +153,11 @@ for C in L do
 end for;
 end if;
 
-return (#Ts ne 0),Ts;
+if #Ts eq 0 then
+    return false,[* *];
+else
+    AssertTs(f1, f2, Ts : geometric := geometric);
+    return (#Ts ne 0),Ts;
+end if;
 
 end function;

@@ -1178,3 +1178,21 @@ end function;
 
 
 
+procedure AssertTs(f1, f2, Ts : geometric := false)
+
+if not geometric then
+    for T in Ts do
+        assert IsMultiplePolynomial(TransformForm(f1,T), f2);
+    end for;
+else
+    for T in Ts do
+        R := Parent(f1); F := BaseRing(R);
+        K := BaseRing(T); S := PolynomialRing(K, 3);
+        /* We rely on coercion here */
+        h := hom< R -> S | [S.1,S.2,S.3] >;
+        g1 := h(f1); g2 := h(f2);
+        assert IsMultiplePolynomial(TransformForm(g1,T), g2);
+    end for;
+end if;
+
+end procedure;

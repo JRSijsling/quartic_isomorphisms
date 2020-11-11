@@ -1,8 +1,9 @@
 /* Examples with group G16 */
+SetVerbose("QuarticIso", 1);
 
 N := 10^10;
 F := FiniteField(NextPrime(N),6);
-//F := Rationals();
+F := Rationals(); N := 5;
 if Characteristic(F) eq 0 then
     D := [-N..N];
 else
@@ -35,7 +36,7 @@ for i:=1 to 2^5 do
         end while;
         f2 := a2*g2(f);
 
-        time test,Ts := QuarticIsomorphisms(f1,f2);
+        time test,Ts := QuarticIsomorphisms(f1,f2 : geometric := true);
 
         //"Transformation tests:";
         for T in Ts do

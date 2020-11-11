@@ -7,12 +7,12 @@
  */
 
 
-import "Ingredients.m": FlexesThroughPoint;
+import "Ingredients.m": FlexesThroughPoint, AssertTs;
 
 
 function IsoZ3(f01,f02 : geometric := false);
 
-Ts := [];
+Ts := [* *];
 
 F := BaseRing(Parent(f01));
 P2<x,y,z> := ProjectiveSpace(F,2);
@@ -38,7 +38,7 @@ HFPts1 := Points(HF1);
 HFPts2 := Points(HF2);
 
 if (Deg1 ne Deg2) or (#HFPts1 ne #HFPts2) then
-    return false,[],f01;
+     return false,[* *],f01;
 else
 for i := 1 to #Points(HF1) do
 
@@ -123,7 +123,7 @@ b2 := MonomialCoefficient(i2,y*z^3);
 c2 := MonomialCoefficient(i2,z^4);
 
 if not WPSEqual([2,3,4],[a1,b1,c1],[a2,b2,c2]) then
-    return false,[],f01;
+    return false,[* *],f01;
 else
 //The  bi  are non-zero in this stratum.
 if a1 ne 0 then
@@ -163,13 +163,13 @@ end if;
 end for;
 
 if #Ts eq 0 then
-    return false,[],0;
+    return false,[* *],0;
 else
+    AssertTs(f1, f2, Ts : geometric := geometric);
     return (#Ts ne 0),Ts,StF;
 end if;
 
 end if;
 
 end function;
-
 

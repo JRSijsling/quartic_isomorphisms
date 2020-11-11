@@ -116,20 +116,20 @@ if IsInStratumC3(I1) then
     vprint QuarticIso : "In stratum C3";
     try
         test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
-        return test,Ts,false;
+        return test,Ts,true;
     catch e
         test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-        return test, &cat(Mss), false;
+        return test, &cat(Mss), true;
     end try;
 end if;
 if IsInStratumG16(I1) then
     vprint QuarticIso : "In stratum G16";
     try
-        test,Ts,StF := IsoG16(f1,f2 : geometric := geometric);
-        return test,Ts,false;
+        test,Ts := IsoG16(f1,f2 : geometric := geometric);
+        return test,Ts,true;
     catch e
         test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
-        return test, &cat(Mss), false;
+        return test, &cat(Mss), true;
     end try;
 end if;
 
@@ -713,9 +713,6 @@ end try;
 
 test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
 return test, &cat(Mss), true;
-
-//What follows is a last resort, and we want to remove this.
-return IsIsomorphic(Curve(P2,f1),Curve(P2,f2)),AutomorphismGroup(Curve(P2,f1)),true;
 
 end if;
 
