@@ -32,8 +32,8 @@ function IsInStratumC3(DO)
 
     I03,I06,I09,J09,I12,J12,I15,J15,I18,J18,I21,J21,I27 := Explode(DO);
 
-    if
-	I03 eq 0
+    if not
+	(I03 eq 0
 	and
 	I06 eq 0
 	and
@@ -47,12 +47,66 @@ function IsInStratumC3(DO)
 	and
 	I21 eq 0
 	and
-	J21 eq 0
+	J21 eq 0)
 	then
-	return true;
+	return false;
     end if;
 
-    return false;
+    if
+        I03 eq 0
+        and
+        I06 eq 0
+        and
+        I12 eq 0
+        and
+        J12 eq 0
+        and
+        I15 eq 0
+        and
+        J15 eq 0
+        and
+        I21 eq 0
+        and
+        J21 eq 0
+        and
+        180*J18*J09-80*I18*J09+9*J09^3-180*J18*I09+40*I18*I09-48*J09^2*I09+69*J09*I09^2-18*I09^3 eq 0
+        and
+        25600*I27-194861700*I18*J09+28917972*J09^3-276349320*J18*I09+95659380*I18*I09-11300229*J09^2*I09+103851882*J09*I09^2-35123949*I09^3 eq 0
+        and
+        400*I18^2+280*I18*J09^2+9*J09^4-600*I18*J09*I09-30*J09^3*I09+80*I18*I09^2-27*J09^2*I09^2+120*J09*I09^3-36*I09^4 eq 0
+        then
+        return false;
+    end if;
+
+    if
+        I03 eq 0
+        and
+        I06 eq 0
+        and
+        I09 eq 0
+        and
+        J09 eq 0
+        and
+        I12 eq 0
+        and
+        J12 eq 0
+        and
+        I15 eq 0
+        and
+        J15 eq 0
+        and
+        J18 eq 0
+        and
+        I18 eq 0
+        and
+        I21 eq 0
+        and
+        J21 eq 0
+        then
+        return false;
+    end if;
+
+    return true;
 end function;
 
 
@@ -61,8 +115,8 @@ function IsInStratumG16(DO)
 
     I03,I06,I09,J09,I12,J12,I15,J15,I18,J18,I21,J21,I27 := Explode(DO);
 
-    if
-	I06 eq 0
+    if not
+	(I06 eq 0
 	and
 	-3*J09 + I09 eq 0
 	and
@@ -82,12 +136,68 @@ function IsInStratumG16(DO)
 	and
 	J21 eq 0
 	and
-	I27 - 27*I09^3 + 27*I09^2*I03^3 - 9*I09*I03^6 + I03^9 eq 0
+	I27 - 27*I09^3 + 27*I09^2*I03^3 - 9*I09*I03^6 + I03^9 eq 0)
 	then
-	return true;
+	return false;
     end if;
 
-    return false;
+    if
+        I03 eq 0
+        and
+        I06 eq 0
+        and
+        -3*J09 + I09 eq 0
+        and
+        I12 eq 0
+        and
+        J12 eq 0
+        and
+        I15 eq 0
+        and
+        J15 eq 0
+        and
+        J18 eq 0
+        and
+        I18 eq 0
+        and
+        I21 eq 0
+        and
+        J21 eq 0
+        and
+        I27 - 27*I09^3 eq 0
+        then
+        return false;
+    end if;
+
+    if
+        I06 eq 0
+        and
+        I09 eq 0
+        and
+        J09 eq 0
+        and
+        I12 eq 0
+        and
+        J12 eq 0
+        and
+        I15 eq 0
+        and
+        J15 eq 0
+        and
+        J18 eq 0
+        and
+        I18 eq 0
+        and
+        I21 eq 0
+        and
+        J21 eq 0
+        and
+        I27 + I03^9 eq 0
+        then
+        return false;
+    end if;
+
+    return true;
 end function;
 
 
