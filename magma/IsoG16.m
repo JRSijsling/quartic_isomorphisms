@@ -132,8 +132,6 @@ for C in L do
 
     M := Matrix(FF,2,2,C);
     bla,lambda := IsMultiplePolynomial(TransformBinaryForm(bq1FF,M),bq2FF);
-    lambda := lambda[1,1];
-    lambda := 1/lambda;
     FFF := FF;
     S<t> := PolynomialRing(FF);
     if geometric then

@@ -3,8 +3,8 @@
 N := 50;
 F := FiniteField(NextPrime(10^N));
 F := FiniteField(NextPrime(10^N),2);
-//F := FiniteField(11);
-//F := FiniteField(13,6);
+F := FiniteField(11);
+F := FiniteField(13,6);
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 stop := false;
@@ -38,8 +38,6 @@ while not stop do
         f2 := a2*g2(f);
 
         time test,Ts,IINeeded := QuarticIsomorphisms(f1,f2 : geometric := true);
-        //test,Ts,IINeeded := QuarticIsoQQ(f1,f2,P2);
-        //Ts;
 
         if (not test) and (not IINeeded) then
             //stop := true;

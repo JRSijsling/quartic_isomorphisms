@@ -1,23 +1,27 @@
 /* Examples with group G16 */
 
 N := 10^10;
-F := FiniteField(NextPrime(N));
-//F := FiniteField(13);
+F := FiniteField(NextPrime(N),6);
 //F := Rationals();
+if Characteristic(F) eq 0 then
+    D := [-N..N];
+else
+    D := F;
+end if;
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 f := 2*x^4 + y^4 + y^3*z - y^2*z^2 + 2*y*z^3 - z^4;
 
 for i:=1 to 2^5 do
-    T1 := Matrix(F,3,3,[Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N])]);
-    T2 := Matrix(F,3,3,[Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N]),Random([-N..N])]);
+    T1 := Matrix(F,3,3,[Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D)]);
+    T2 := Matrix(F,3,3,[Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D),Random(D)]);
 
     if (Determinant(T1) ne 0) and (Determinant(T2) ne 0) then
         g1 := map<P2 -> P2 | [T1[1,1]*x+T1[1,2]*y+T1[1,3]*z,T1[2,1]*x+T1[2,2]*y+T1[2,3]*z,T1[3,1]*x+T1[3,2]*y+T1[3,3]*z]>;
         g1 := AlgebraMap(g1);
         stopa1 := false;
         while not stopa1 do
-            a1 := Random([-N..N]);
+            a1 := Random(D);
             stopa1 := a1 ne 0;
         end while;
         f1 := a1*g1(f);
@@ -26,16 +30,12 @@ for i:=1 to 2^5 do
         g2 := AlgebraMap(g2);
         stopa2 := false;
         while not stopa2 do
-            a2 := Random([-N..N]);
+            a2 := Random(D);
             stopa2 := a2 ne 0;
         end while;
         f2 := a2*g2(f);
 
         time test,Ts := QuarticIsomorphisms(f1,f2);
-        //time test,Ts := IsoG16(f1,f2 : geometric := true);
-        //test;
-        //"Memory used:";
-        //Memory();
 
         //"Transformation tests:";
         for T in Ts do
