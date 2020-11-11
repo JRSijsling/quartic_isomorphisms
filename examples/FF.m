@@ -1,10 +1,11 @@
 /* Examples over finite fields */
+SetVerbose("QuarticIso", 1);
 
 N := 50;
 F := FiniteField(NextPrime(10^N));
 F := FiniteField(NextPrime(10^N),2);
 F := FiniteField(11);
-F := FiniteField(13,6);
+//F := FiniteField(13,6);
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 stop := false;
@@ -55,6 +56,13 @@ while not stop do
             f1FF := R2FF ! f1;
             f2FF := R2FF ! f2;
             if not IsMultiplePolynomial(TransformForm(f1FF,T), f2FF) then
+                print #Ts;
+                print T;
+                print Determinant(T);
+                I1, W1 := DixmierOhnoInvariants(f1);
+                I2, W2 := DixmierOhnoInvariants(f2);
+                print WPSNormalize(W1, I1);
+                print WPSNormalize(W2, I2);
                 error "SOMETHING WENT WRONG, PLEASE TELL ME!";
             end if;
         end for;

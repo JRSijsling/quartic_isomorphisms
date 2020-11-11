@@ -10,6 +10,7 @@
 import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple;
 import "IsoZ3.m": IsoZ3;
 import "IsoG16.m": IsoG16;
+import "Sutherland.m": SPQIsIsomorphic;
 
 
 function QuarticIsoQQInvTest(f1,f2);
@@ -858,6 +859,9 @@ end if;
 end if;
 
 end while;
+
+test, Mss := SPQIsIsomorphic(f1, f2);
+return test, &cat(Mss), true;
 
 //What follows is a last resort, and we want to remove this.
 return IsIsomorphic(Curve(P2,f1),Curve(P2,f2)),AutomorphismGroup(Curve(P2,f1)),true;

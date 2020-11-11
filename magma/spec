@@ -6,6 +6,7 @@
   QuarticIsoQQ.m
   QuarticIso.m
   Normalize.m
+  Sutherland.m
   echidna-2.0
   {
     src

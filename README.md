@@ -1,7 +1,7 @@
 Description
 --
 
-This repository contains Magma code for calculating isomorphisms between plane quartic curves. The code in it is written in terrible style for now, and it only works over the rationals and finite fields. A number field version exists, but does not have acceptable speed. To be improved.
+This repository contains Magma code for calculating isomorphisms between plane quartic curves. The code in it is written in terrible style for now, and it only works over the rationals and finite fields. A number field version exists, but does not have acceptable speed. To be improved. In some non-generic cases, we use an approach due to Andrew Sutherland that involves Groebner bases.
 
 Prerequisites
 --
