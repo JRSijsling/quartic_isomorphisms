@@ -3,7 +3,7 @@ SetVerbose("QuarticIso", 1);
 
 N := 10^10;
 F := FiniteField(NextPrime(N),6);
-F := Rationals(); N := 5;
+//F := Rationals(); N := 5;
 if Characteristic(F) eq 0 then
     D := [-N..N];
 else

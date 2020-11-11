@@ -7,7 +7,7 @@
  */
 
 
-import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple, NonSquareRepresentative, NormalizeDiagonalMatrix;
+import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple, NonSquareRepresentative, NormalizeDiagonalMatrix, AssertTs;
 import "IsoZ3.m": IsoZ3;
 import "IsoG16.m": IsoG16;
 import "Sutherland.m": SPQIsIsomorphic;
@@ -541,6 +541,7 @@ while not stop do
         end if;
     end for;
     //Ts;
+    AssertTs(f1, f2, Ts);
     return (#Ts ne 0),Ts,false;
 
     else
@@ -597,6 +598,7 @@ while not stop do
         end if;
     end for;
     //Ts;
+    AssertTs(f1, f2, Ts);
     return (#Ts ne 0),Ts,false;
 
     else
@@ -641,6 +643,7 @@ while not stop do
         end if;
     end for;
     //Ts;
+    AssertTs(f1, f2, Ts);
     return (#Ts ne 0),Ts,false;
 
     else
@@ -695,6 +698,7 @@ while not stop do
         end if;
     end for;
     //Ts;
+    AssertTs(f1, f2, Ts);
     return (#Ts ne 0),Ts,false;
 
     else

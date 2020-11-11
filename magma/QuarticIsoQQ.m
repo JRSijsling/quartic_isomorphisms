@@ -7,7 +7,7 @@
  */
 
 
-import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple;
+import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple, AssertTs;
 import "IsoZ3.m": IsoZ3;
 import "IsoG16.m": IsoG16;
 import "Sutherland.m": SPQIsIsomorphic;
@@ -132,7 +132,7 @@ if IsInStratumG16(I1) then
     end try;
 end if;
 
-try
+//try
 //Finding a suitable quadratic contravariant
 stop := false;
 teller := 0;
@@ -639,7 +639,7 @@ for l in List do
             test := test and (C[i] in F);
         end for;
         if test then
-            C0 := [* *];
+            C0 := [ ];
             for c in C do
                 Append(~C0,F!c);
             end for;
@@ -648,6 +648,7 @@ for l in List do
     end if;
 end for;
 //Ts;
+AssertTs(f1, f2, Ts);
 return (#Ts ne 0),Ts,false;
 
 else
@@ -723,6 +724,7 @@ for l in List do
     end if;
 end for;
 //Ts;
+AssertTs(f1, f2, Ts);
 return (#Ts ne 0),Ts,false;
 
 else
@@ -786,6 +788,7 @@ for l in List do
     end if;
 end for;
 //Ts;
+AssertTs(f1, f2, Ts);
 return (#Ts ne 0),Ts,false;
 
 else
@@ -859,6 +862,7 @@ for l in List do
     end if;
 end for;
 //Ts;
+AssertTs(f1, f2, Ts);
 return (#Ts ne 0),Ts,false;
 
 else
@@ -871,10 +875,12 @@ end if;
 end if;
 
 end while;
+/*
 catch e
     test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
     return test, &cat(Mss), true;
 end try;
+*/
 
 test, Mss := SPQIsIsomorphic(f1, f2 : geometric := geometric);
 return test, &cat(Mss), true;

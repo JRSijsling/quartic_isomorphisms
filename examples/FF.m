@@ -6,7 +6,7 @@ F := FiniteField(NextPrime(10^N));
 F := FiniteField(NextPrime(10^N),2);
 F := FiniteField(11);
 F := FiniteField(17);
-F := FiniteField(13,32);
+//F := FiniteField(13,32);
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 stop := false;

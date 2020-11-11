@@ -4,7 +4,7 @@ SetVerbose("QuarticIso", 1);
 N := 10^100;
 F := FiniteField(NextPrime(N));
 //F := FiniteField(5);
-F := Rationals(); N := 10;
+//F := Rationals(); N := 10;
 P2<x,y,z> := ProjectiveSpace(F,2);
 
 f1 := x^3*z + y^4 + y^2*z^2 + 2*y*z^3 - 3*z^4;
