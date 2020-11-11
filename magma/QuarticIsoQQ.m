@@ -107,7 +107,7 @@ R<x1,x2,x3> := CoordinateRing(P2);
 Transfs := [];
 
 if not QuarticIsoQQInvTest(f1,f2) then
-    return false,[],false;
+    return false,[* *],false;
 else
 
 I1 := DixmierOhnoInvariants(f1);
@@ -273,7 +273,7 @@ Disc2 := Discriminant(Q2);
 DiscS := Discriminant(QS);
 
 if not (Disc1 eq Disc2) then
-    return false,[],false;
+    return false,[* *],false;
 else
 
 //Now we take a common extension for all three algebras such that all split.
@@ -600,7 +600,7 @@ test5,List := IsGL2GeometricEquivalent(hbq1,hbq2,4 : geometric := geometric);
 
 if test5 then
 
-Ts := [];
+Ts := [* *];
 for l in List do
     FF := L;
     P2FF := ProjectiveSpace(FF,2);
@@ -638,7 +638,7 @@ for l in List do
             test := test and (C[i] in F);
         end for;
         if test then
-            C0 := [];
+            C0 := [* *];
             for c in C do
                 Append(~C0,F!c);
             end for;
@@ -650,7 +650,7 @@ end for;
 return (#Ts ne 0),Ts,false;
 
 else
-    return false,[],false;
+    return false,[* *],false;
 end if;
 
 else
@@ -675,7 +675,7 @@ test6,List := IsGL2GeometricEquivalent(h(bq1T),h(bq2T),4 : geometric := geometri
 
 if test6 then
 
-Ts := [];
+Ts := [* *];
 for l in List do
     FF := L;
     P2FF := ProjectiveSpace(FF,2);
@@ -713,7 +713,7 @@ for l in List do
             test := test and (C[i] in F);
         end for;
         if test then
-            C0 := [];
+            C0 := [* *];
             for c in C do
                 Append(~C0,F!c);
             end for;
@@ -725,7 +725,7 @@ end for;
 return (#Ts ne 0),Ts,false;
 
 else
-    return false,[],false;
+    return false,[* *],false;
 end if;
 end if;
 
@@ -738,7 +738,7 @@ test7,List := IsGL2GeometricEquivalent(hbo1,hbo2,8 : geometric := geometric);
 
 if test7 then
 
-Ts := [];
+Ts := [* *];
 for l in List do
     FF := L;
     P2FF := ProjectiveSpace(FF,2);
@@ -776,7 +776,7 @@ for l in List do
             test := test and (C[i] in F);
         end for;
         if test then
-            C0 := [];
+            C0 := [* *];
             for c in C do
                 Append(~C0,F!c);
             end for;
@@ -788,7 +788,7 @@ end for;
 return (#Ts ne 0),Ts,false;
 
 else
-    return false,[],false;
+    return false,[* *],false;
 end if;
 
 else
@@ -811,7 +811,7 @@ test8,List := IsGL2GeometricEquivalent(hbf1red,hbf2red,m : geometric := geometri
 
 if test8 then
 
-Ts := [];
+Ts := [* *];
 for l in List do
     FF := L;
     P2FF := ProjectiveSpace(FF,2);
@@ -849,7 +849,7 @@ for l in List do
             test := test and (C[i] in F);
         end for;
         if test then
-            C0 := [];
+            C0 := [* *];
             for c in C do
                 Append(~C0,F!c);
             end for;
@@ -861,7 +861,7 @@ end for;
 return (#Ts ne 0),Ts,false;
 
 else
-    return false,[],false;
+    return false,[* *],false;
 end if;
 end if;
 end if;

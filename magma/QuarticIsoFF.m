@@ -108,7 +108,7 @@ f2 := R ! f2;
 Transfs := [];
 
 if not QuarticIsoFFInvTest(f1,f2) then
-    return false,[],false;
+    return false,[* *],false;
 else
 
 I1 := DixmierOhnoInvariants(f1);
@@ -512,7 +512,7 @@ while not stop do
 
     if test5 then
 
-    Ts := [];
+    Ts := [* *];
     for l in List do
         FF := Parent(l[1]);
         P2FF := ProjectiveSpace(FF,2);
@@ -543,7 +543,7 @@ while not stop do
     return (#Ts ne 0),Ts,false;
 
     else
-        return false,[],false;
+        return false,[* *],false;
     end if;
 
     else
@@ -568,7 +568,7 @@ while not stop do
 
     if test6 then
 
-    Ts := [];
+    Ts := [* *];
     for l in List do
         FF := Parent(l[1]);
         P2FF := ProjectiveSpace(FF,2);
@@ -599,7 +599,7 @@ while not stop do
     return (#Ts ne 0),Ts,false;
 
     else
-        return false,[],false;
+        return false,[* *],false;
     end if;
     end if;
 
@@ -612,7 +612,7 @@ while not stop do
 
     if test7 then
 
-    Ts := [];
+    Ts := [* *];
     for l in List do
         FF := Parent(l[1]);
         P2FF := ProjectiveSpace(FF,2);
@@ -643,7 +643,7 @@ while not stop do
     return (#Ts ne 0),Ts,false;
 
     else
-        return false,[],false;
+        return false,[* *],false;
     end if;
 
     else
@@ -666,7 +666,7 @@ while not stop do
 
     if test8 then
 
-    Ts := [];
+    Ts := [* *];
     for l in List do
         FF := Parent(l[1]);
         P2FF := ProjectiveSpace(FF,2);
@@ -697,7 +697,7 @@ while not stop do
     return (#Ts ne 0),Ts,false;
 
     else
-        return false,[],false;
+        return false,[* *],false;
     end if;
     end if;
     end if;
