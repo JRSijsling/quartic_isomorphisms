@@ -36,7 +36,15 @@ for i:=1 to 2^5 do
         end while;
         f2 := a2*g2(f);
 
-        time test,Ts := QuarticIsomorphisms(f1,f2 : geometric := true);
+        time test,Ts,IINeeded := QuarticIsomorphisms(f1,f2);
+        time test,Ts,IINeeded := QuarticIsomorphisms(f1,f2 : geometric := true);
+
+        if (not test) and (not IINeeded) then
+            //stop := true;
+            print f1;
+            print f2;
+            error "SOMETHING WENT WRONG, PLEASE TELL ME!";
+        end if;
 
         //"Transformation tests:";
         for T in Ts do
@@ -45,9 +53,25 @@ for i:=1 to 2^5 do
             R2FF<x,y,z> := CoordinateRing(P2FF);
             f1FF := R2FF ! f1;
             f2FF := R2FF ! f2;
-            if not IsMultiplePolynomial(TransformForm(f1FF,T),f2FF) then
+            if not IsMultiplePolynomial(TransformForm(f1FF,T), f2FF) then
+                print #Ts;
+                print T;
+                print Determinant(T);
+                I1, W1 := DixmierOhnoInvariants(f1);
+                I2, W2 := DixmierOhnoInvariants(f2);
+                print WPSNormalize(W1, I1);
+                print WPSNormalize(W2, I2);
                 error "SOMETHING WENT WRONG, PLEASE TELL ME!";
             end if;
         end for;
+
+        if IINeeded then
+            if test then
+                print "Usual isomorphism test needed";
+            else
+                print "Usual isomorphism test needed, BUT FAILS";
+            end if;
+        end if;
+
     end if;
 end for;

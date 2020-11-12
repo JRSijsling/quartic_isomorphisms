@@ -8,7 +8,7 @@
 
 
 import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple, AssertTs;
-import "IsoZ3.m": IsoZ3;
+import "IsoC3.m": IsoC3;
 import "IsoG16.m": IsoG16;
 import "Sutherland.m": SPQIsIsomorphic;
 
@@ -224,8 +224,8 @@ I1 := DixmierOhnoInvariants(f1);
 if IsInStratumC3(I1) then
     vprint QuarticIso : "In stratum C3";
     try
-        test,Ts,StF := IsoZ3(f1,f2 : geometric := geometric);
-        return test,Ts,true;
+        test,Ts,StF := IsoC3(f1,f2 : geometric := geometric);
+        return test,Ts,false;
     catch e
         test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
         return test, Ms, true;
@@ -235,7 +235,7 @@ if IsInStratumG16(I1) then
     vprint QuarticIso : "In stratum G16";
     try
         test,Ts := IsoG16(f1,f2 : geometric := geometric);
-        return test,Ts,true;
+        return test,Ts,false;
     catch e
         test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
         return test, Ms, true;

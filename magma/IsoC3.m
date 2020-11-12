@@ -10,7 +10,7 @@
 import "Ingredients.m": FlexesThroughPoint, AssertTs;
 
 
-function IsoZ3(f01,f02 : geometric := false);
+function IsoC3(f01,f02 : geometric := false);
 
 Ts := [* *];
 
