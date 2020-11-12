@@ -17,6 +17,13 @@ return pts;
 end function;
 
 
+function ConjugateMatrix(h, M)
+
+return Matrix([ [ h(c) : c in Eltseq(row) ] : row in Rows(M) ]);
+
+end function;
+
+
 function SPQIsIsomorphic(f1, f2 : geometric := false)
 // Tests isomorphism of smooth plane curves f(x,y,z)=0 by computing a matrix M in GL(3,F) such that f1^M is a scalar multiple of f2. 
     //require VariableWeights(Parent(f1)) eq [1,1,1]: "Inputs must be trivariate polynomials.";
@@ -96,6 +103,7 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
         f1 := h(f1); f2 := h(f2); R := S;
     end if;
 
+    /* Check */
     Rcl := PolynomialRing(F, 3);
     h := hom< Parent(f1) -> Rcl | [ Rcl.1, Rcl.2, Rcl.3 ] >;
     g1 := h(f1); g2 := h(f2);
@@ -103,5 +111,31 @@ function SPQIsIsomorphic(f1, f2 : geometric := false)
         g1M := g1^M;
         assert LeadingCoefficient(g2)*g1M eq LeadingCoefficient(g1M)*g2;
     end for;
-    return #Ms ne 0, Ms;
+
+    if (#Ms eq 0) or not geometric then
+        return (#Ms ne 0), Ms;
+    end if;
+    Kbar := BaseRing(Ms[1]);
+    if Type(Kbar) ne FldAC then
+        return (#Ms ne 0), Ms;
+    end if;
+
+    /* Absolutize and convert (also works for QQ) */
+    Absolutize(Kbar);
+    /* Unfortunately, for now we have to return at this point because of internal errors */
+    return (#Ms ne 0), Ms;
+
+    A, hKbarA := AbsoluteAffineAlgebra(Kbar);
+    L := NumberField(AbsolutePolynomial(Kbar));
+    hAL := hom< A -> L | L.1 >;
+    Ms := [ ConjugateMatrix(hKbarA, M) : M in Ms ];
+    Ms := [ ConjugateMatrix(hAL, M) : M in Ms ];
+
+    /* Polredabs */
+    if Type(L) eq FldNum then
+        L0, h := Polredabs(L);
+        Ms := [ ConjugateMatrix(h, M) : M in Ms ];
+    end if;
+
+    return (#Ms ne 0), Ms;
 end function;
