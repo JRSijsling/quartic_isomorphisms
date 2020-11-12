@@ -10,6 +10,7 @@
 import "Ingredients.m": DifferentialOperation, EffSPProduct, SmallSplittingFieldOverRationals, TrivializeAlgebra, TransformTernaryForm, Normalize33, BinQuadInvs, IsMultiple, AssertTs;
 import "IsoC3.m": IsoC3;
 import "IsoG16.m": IsoG16;
+import "Strata.m": IsInStratumC3Proper, IsInStratumG16Proper, IsInStratumC1orC2Proper;
 import "Sutherland.m": SPQIsIsomorphic;
 
 
@@ -24,180 +25,6 @@ else
     return false;
 end if;
 
-end function;
-
-
-/* C3 stratum (dim 2) */
-function IsInStratumC3(DO)
-
-    I03,I06,I09,J09,I12,J12,I15,J15,I18,J18,I21,J21,I27 := Explode(DO);
-
-    if not
-	(I03 eq 0
-	and
-	I06 eq 0
-	and
-	I12 eq 0
-	and
-	J12 eq 0
-	and
-	I15 eq 0
-	and
-	J15 eq 0
-	and
-	I21 eq 0
-	and
-	J21 eq 0)
-	then
-	return false;
-    end if;
-
-    if
-        I03 eq 0
-        and
-        I06 eq 0
-        and
-        I12 eq 0
-        and
-        J12 eq 0
-        and
-        I15 eq 0
-        and
-        J15 eq 0
-        and
-        I21 eq 0
-        and
-        J21 eq 0
-        and
-        180*J18*J09-80*I18*J09+9*J09^3-180*J18*I09+40*I18*I09-48*J09^2*I09+69*J09*I09^2-18*I09^3 eq 0
-        and
-        25600*I27-194861700*I18*J09+28917972*J09^3-276349320*J18*I09+95659380*I18*I09-11300229*J09^2*I09+103851882*J09*I09^2-35123949*I09^3 eq 0
-        and
-        400*I18^2+280*I18*J09^2+9*J09^4-600*I18*J09*I09-30*J09^3*I09+80*I18*I09^2-27*J09^2*I09^2+120*J09*I09^3-36*I09^4 eq 0
-        then
-        return false;
-    end if;
-
-    if
-        I03 eq 0
-        and
-        I06 eq 0
-        and
-        I09 eq 0
-        and
-        J09 eq 0
-        and
-        I12 eq 0
-        and
-        J12 eq 0
-        and
-        I15 eq 0
-        and
-        J15 eq 0
-        and
-        J18 eq 0
-        and
-        I18 eq 0
-        and
-        I21 eq 0
-        and
-        J21 eq 0
-        then
-        return false;
-    end if;
-
-    return true;
-end function;
-
-
-/* G16 stratum (dim 1) */
-function IsInStratumG16(DO)
-
-    I03,I06,I09,J09,I12,J12,I15,J15,I18,J18,I21,J21,I27 := Explode(DO);
-
-    if not
-	(I06 eq 0
-	and
-	-3*J09 + I09 eq 0
-	and
-	I12 eq 0
-	and
-	3*J12 - I09*I03 eq 0
-	and
-	I15 eq 0
-	and
-	J15 eq 0
-	and
-	J18 eq 0
-	and
-	I18 eq 0
-	and
-	I21 eq 0
-	and
-	J21 eq 0
-	and
-	I27 - 27*I09^3 + 27*I09^2*I03^3 - 9*I09*I03^6 + I03^9 eq 0)
-	then
-	return false;
-    end if;
-
-    if
-        I03 eq 0
-        and
-        I06 eq 0
-        and
-        -3*J09 + I09 eq 0
-        and
-        I12 eq 0
-        and
-        J12 eq 0
-        and
-        I15 eq 0
-        and
-        J15 eq 0
-        and
-        J18 eq 0
-        and
-        I18 eq 0
-        and
-        I21 eq 0
-        and
-        J21 eq 0
-        and
-        I27 - 27*I09^3 eq 0
-        then
-        return false;
-    end if;
-
-    if
-        I06 eq 0
-        and
-        I09 eq 0
-        and
-        J09 eq 0
-        and
-        I12 eq 0
-        and
-        J12 eq 0
-        and
-        I15 eq 0
-        and
-        J15 eq 0
-        and
-        J18 eq 0
-        and
-        I18 eq 0
-        and
-        I21 eq 0
-        and
-        J21 eq 0
-        and
-        I27 + I03^9 eq 0
-        then
-        return false;
-    end if;
-
-    return true;
 end function;
 
 
@@ -221,7 +48,7 @@ if not QuarticIsoQQInvTest(f1,f2) then
 else
 
 I1 := DixmierOhnoInvariants(f1);
-if IsInStratumC3(I1) then
+if IsInStratumC3Proper(I1) then
     vprint QuarticIso : "In stratum C3";
     try
         test,Ts,StF := IsoC3(f1,f2 : geometric := geometric);
@@ -231,7 +58,7 @@ if IsInStratumC3(I1) then
         return test, Ms, true;
     end try;
 end if;
-if IsInStratumG16(I1) then
+if IsInStratumG16Proper(I1) then
     vprint QuarticIso : "In stratum G16";
     try
         test,Ts := IsoG16(f1,f2 : geometric := geometric);
@@ -240,6 +67,10 @@ if IsInStratumG16(I1) then
         test, Ms := SPQIsIsomorphic(f1, f2 : geometric := geometric);
         return test, Ms, true;
     end try;
+end if;
+
+if IsInStratumC1orC2Proper(I1) then
+    geometric := false;
 end if;
 
 try
