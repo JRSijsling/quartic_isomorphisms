@@ -69,7 +69,7 @@ if IsInStratumG16Proper(I1) then
     end try;
 end if;
 
-if IsInStratumC1orC2Proper(I1) then
+if IsInStratumC1orC2Proper(I1) and (f1 eq f2) then
     geometric := false;
 end if;
 
